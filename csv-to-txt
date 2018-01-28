@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [[ ! $# -eq 1 && ! -f $1 ]];then
+	echo "$0 <file.csv>"
+	exit 1
+fi
+
+#First line
+first=`head -n1 $1`
+
+#Numbers of types
+num=$((`tr -dc ',' <<< "$first" | wc -c`+1))
+
+#DATA
+cat $1 | tail -n $(( `wc -l $1 | cut -d" " -f1` -1)) | while read line
+do
+	for i in `seq 1 $num`
+	do
+		echo "`cut -d',' -f$i <<< $first`: `cut -d',' -f$i <<< $line`"
+	done
+	echo
+done
