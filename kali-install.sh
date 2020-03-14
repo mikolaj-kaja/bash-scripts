@@ -1,2 +1,2 @@
 #!/bin/bash
-apt update && apt dist-upgrade && apt autoremove && apt clean && apt install openssh-server openvpn vim tmux kali-linux-top10
+apt update -y && apt dist-upgrade -y && apt autoremove -y && apt clean && apt install -y openssh-server openvpn vim tmux kali-linux-top10
